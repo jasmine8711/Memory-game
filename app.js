@@ -1,7 +1,7 @@
-let cardbox = document.getElementsByClassName("card");
-
+let cards = document.querySelectorAll(".card");
+const cardUl = document.getElementById("cardul");
 const cardimgs = document.querySelectorAll(".front");
-const cardArray = Array.prototype.slice.call(cardbox);
+const cardArray = Array.prototype.slice.call(cardimgs);
 const startBtn = document.querySelector("#startbtn");
 
 startBtn.addEventListener("click", showCard);
@@ -9,14 +9,20 @@ function showCard() {
   cardimgs.forEach(x => {
     //show img
     x.classList.remove("hidden");
-    //after 5s ,hidden img again
+    //after 5s , 删除ul里面全部的li
     setTimeout(() => {
-      x.classList.add("hidden");
+      x.parentElement.removeChild(x);
     }, 2000);
   });
+  //新的随机数组
+  const newCard = shuffle(cardArray);
+  //新的数组放到ul里面
+  console.log(cards);
+  console.log(newCard);
 
-  //create random numbercard
-  shuffle(cardArray);
+  for (let j = 0; j < newCard.length; j++) {
+    cards[j].appendChild(newCard[j]);
+  }
 }
 
 //Fisher–Yates shuffle
@@ -33,5 +39,3 @@ function shuffle(array) {
   }
   return array;
 }
-
-console.log(cardArray);
