@@ -1,24 +1,31 @@
 const cards = document.querySelectorAll(".card");
 const cardsBox = Array.prototype.slice.call(cards);
-const cardUl = document.getElementById("cardul");
 
+const cardBacks = document.querySelectorAll(".front");
+const cardImgs = document.querySelectorAll(".back");
 const startBtn = document.querySelector("#startbtn");
 const point = document.getElementById("point");
 const text = document.getElementById("text");
 let score = 0;
 point.innerText = score;
-cards.forEach(x => {
-  x.onclick = () => {
-    x.classList.toggle("flipped");
-  };
-});
 
-/* //Fisher–Yates shuffle
+//console.log(cardBack);
+startBtn.addEventListener("click", showCard);
+function showCard() {
+  newFoodsOrder();
+  cards.forEach(x => {
+    x.classList.toggle("flipped");
+    setTimeout(() => {
+      x.classList.remove("flipped");
+    }, 2000);
+  });
+}
+
+//Fisher–Yates shuffle
 function shuffle(array) {
   var i = 0,
     j = 0,
     temp = null;
-
   for (i = array.length - 1; i > 0; i -= 1) {
     j = Math.floor(Math.random() * (i + 1));
     temp = array[i];
@@ -27,60 +34,55 @@ function shuffle(array) {
   }
   return array;
 }
+const foods = document.querySelectorAll(".food");
+const foodsArray = Array.prototype.slice.call(foods);
+const newFoods = shuffle(foodsArray);
+//console.log(newFoods);
 //put new order in html
-function newOrder() {
-  const newCard = shuffle(cardArray);
+function newFoodsOrder() {
   for (let i = 0; i < 10; i++) {
-    console.log(newCard[i]);
-    cards[i].innerHTML = newCard[i].outerHTML;
+    //console.log(newCard[i]);
+    cardImgs[i].innerHTML = newFoods[i].outerHTML;
   }
 }
-
-const cardimgs = document.querySelectorAll(".front");
-const cardArray = Array.prototype.slice.call(cardimgs);
-const newCard = shuffle(cardArray);
-
-//console.log(cardimgs[0].dataset.name);
-function showCard() {
-  newOrder();
-  newCard.forEach(x => {
-    //show img
-    x.classList.remove("hidden");
-    //after 5s , 删除ul里面全部的li
-    setTimeout(() => {
-      x.classList.add("hidden");
-    }, 1000);
-  });
-}
-startBtn.addEventListener("click", showCard);
 
 let flipped = false;
 let firstCard;
 let secondCard;
-cardsBox.forEach(x => {
+
+cards.forEach(x => {
   x.onclick = () => {
-    x.classList.add("flipped");
+    x.classList.toggle("flipped");
     if (!flipped) {
       flipped = true;
       firstCard = x;
-      //console.log(firstCard.children[0].dataset.name, flipped);
+      firstIndex = cardsBox.indexOf(x);
+      //console.log(firstIndex, flipped);
     } else {
       flipped = false;
       secondCard = x;
-      if (
-        firstCard.children[0].dataset.name ===
-        secondCard.children[0].dataset.name
-      ) {
+      secondIndex = cardsBox.indexOf(x);
+
+      if (foods[firstIndex].dataset.name === foods[secondIndex].dataset.name) {
         console.log("win");
-        score++;
+        score = 1;
         text.innerText = "you win!";
-        //newOrder();
+        setTimeout(() => {
+          cards.forEach(x => {
+            x.classList.remove("flipped");
+          });
+        }, 2000);
       } else {
+        console.log("lost");
         text.innerText = "you lost!";
         score--;
-        // newOrder();
+
+        setTimeout(() => {
+          cards.forEach(x => {
+            x.classList.remove("flipped");
+          });
+        }, 2000);
       }
     }
   };
 });
- */
