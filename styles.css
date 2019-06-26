@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-.container {
+#container {
   background: #473f3f;
   position: relative;
   -webkit-perspective: 800px;

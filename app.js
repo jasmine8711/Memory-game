@@ -1,3 +1,4 @@
+const container = document.getElementById("container");
 const cards = document.querySelectorAll(".card");
 const cardsBox = Array.prototype.slice.call(cards);
 
@@ -7,7 +8,6 @@ const startBtn = document.querySelector("#startbtn");
 const point = document.getElementById("point");
 const text = document.getElementById("text");
 let score = 0;
-point.innerText = score;
 
 //console.log(cardBack);
 startBtn.addEventListener("click", showCard);
@@ -34,55 +34,74 @@ function shuffle(array) {
   }
   return array;
 }
-const foods = document.querySelectorAll(".food");
-const foodsArray = Array.prototype.slice.call(foods);
-const newFoods = shuffle(foodsArray);
-//console.log(newFoods);
+
 //put new order in html
 function newFoodsOrder() {
+  const newFoods = shuffle(cardsBox);
   for (let i = 0; i < 10; i++) {
-    //console.log(newCard[i]);
-    cardImgs[i].innerHTML = newFoods[i].outerHTML;
+    container.appendChild(newFoods[i]);
   }
 }
 
 let flipped = false;
+let lockBoard = false;
 let firstCard;
 let secondCard;
+function matching() {
+  if (lockBoard) {
+    return;
+  }
+  this.classList.toggle("flipped");
 
+  if (!flipped) {
+    flipped = true;
+    firstCard = this;
+    return;
+  } else {
+    flipped = false;
+    secondCard = this;
+    console.log(cardsBox.indexOf(firstCard), secondCard.dataset.name);
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  if (cardsBox.indexOf(firstCard) == cardsBox.indexOf(secondCard)) {
+    console.log("you can't click twice!");
+    text.innerText = "you can't click twice!";
+  } else if (firstCard.dataset.name === secondCard.dataset.name) {
+    disableCard();
+    score += 1;
+    point.innerText = score;
+    text.innerText = "you win!";
+    console.log("win");
+  } else {
+    unFlipCard();
+    console.log("lost");
+    text.innerText = "you lost!";
+  }
+  function disableCard() {
+    firstCard.removeEventListener("click", matching);
+    secondCard.removeEventListener("click", matching);
+    resetBoard();
+  }
+  function unFlipCard() {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+      resetBoard();
+    }, 2000);
+  }
+}
+function resetBoard() {
+  [flipped, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
+}
 cards.forEach(x => {
-  x.onclick = () => {
-    x.classList.toggle("flipped");
-    if (!flipped) {
-      flipped = true;
-      firstCard = x;
-      firstIndex = cardsBox.indexOf(x);
-      //console.log(firstIndex, flipped);
-    } else {
-      flipped = false;
-      secondCard = x;
-      secondIndex = cardsBox.indexOf(x);
-
-      if (foods[firstIndex].dataset.name === foods[secondIndex].dataset.name) {
-        console.log("win");
-        score = 1;
-        text.innerText = "you win!";
-        setTimeout(() => {
-          cards.forEach(x => {
-            x.classList.remove("flipped");
-          });
-        }, 2000);
-      } else {
-        console.log("lost");
-        text.innerText = "you lost!";
-        score--;
-
-        setTimeout(() => {
-          cards.forEach(x => {
-            x.classList.remove("flipped");
-          });
-        }, 2000);
-      }
-    }
-  };
+  x.addEventListener("click", matching);
 });
+
+(function test() {
+  startBtn.innerText = "what?";
+})();
