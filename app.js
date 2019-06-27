@@ -11,6 +11,7 @@ let score = 0;
 
 //console.log(cardBack);
 startBtn.addEventListener("click", showCard);
+//show all the card
 function showCard() {
   newFoodsOrder();
   cards.forEach(x => {
@@ -38,16 +39,18 @@ function shuffle(array) {
 //put new order in html
 function newFoodsOrder() {
   const newFoods = shuffle(cardsBox);
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < cardsBox.length; i++) {
     container.appendChild(newFoods[i]);
   }
 }
 
 let flipped = false;
+
 let lockBoard = false;
 let firstCard;
 let secondCard;
 function matching() {
+  //console.log(this);
   if (lockBoard) {
     return;
   }
@@ -101,7 +104,136 @@ function resetBoard() {
 cards.forEach(x => {
   x.addEventListener("click", matching);
 });
+const body = document.getElementsByTagName("body")[0];
 
-(function test() {
-  startBtn.innerText = "what?";
-})();
+body.addEventListener("keyup", getKeyAndMove);
+
+let index;
+let isFirstMove = true;
+let isEnterOnce = true;
+////let isEnterTwice = true;
+function getKeyAndMove(event) {
+  // console.log("press");
+
+  var x = event.keyCode;
+
+  if (isFirstMove) {
+    isFirstMove = false;
+    index = 0;
+    cards[index].classList.add("shadow");
+    return;
+  }
+
+  switch (x) {
+    case 37: //left arrow key
+      moveLeft();
+      break;
+    case 38: //Up arrow key
+      moveUp();
+      break;
+    case 39: //right arrow key
+      moveRight();
+      break;
+    case 40: //down arrow key
+      moveDown();
+      break;
+    case 13: //enter
+      pressEnter();
+  }
+}
+function pressEnter() {
+  if (lockBoard) {
+    return;
+  }
+  cards[index].classList.add("flipped");
+  if (!flipped) {
+    flipped = true;
+    firstCard = cards[index];
+    return;
+  } else {
+    flipped = false;
+    secondCard = cards[index];
+    console.log(secondCard);
+    checkMatch();
+  }
+}
+
+function moveUp() {
+  console.log(index);
+  if (index > 5 && index <= 17) {
+    index -= 6;
+    cards[index].classList.add("shadow");
+    cards[index + 6].classList.remove("shadow");
+  }
+}
+function moveDown() {
+  console.log(index);
+  if (index >= 0 && index <= 11) {
+    index += 6;
+    cards[index].classList.add("shadow");
+    cards[index - 6].classList.remove("shadow");
+  }
+}
+function moveLeft() {
+  if (index > 0 && index <= 17) {
+    index--;
+    cards[index].classList.add("shadow");
+    cards[index + 1].classList.remove("shadow");
+  } else if (index <= 0) {
+    index = 17;
+    cards[index].classList.add("shadow");
+    cards[0].classList.remove("shadow");
+  }
+  //console.log(index);
+}
+
+function moveRight() {
+  if (index >= 0 && index < 17) {
+    index++;
+    cards[index].classList.add("shadow");
+    cards[index - 1].classList.remove("shadow");
+  } else if (index >= 17) {
+    cards[17].classList.remove("shadow");
+    index = 0;
+    cards[index].classList.add("shadow");
+  }
+  console.log("right");
+}
+
+//upload
+function handleFileSelect(evt) {
+  var files = evt.target.files; // FileList object
+
+  // Loop through the FileList and render image files as thumbnails.
+  for (var i = 0, f; (f = files[i]); i++) {
+    // Only process image files.
+    if (!f.type.match("image.*")) {
+      continue;
+    }
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        var span = document.createElement("span");
+        span.innerHTML = [
+          '<img class="thumb" src="',
+          e.target.result,
+          '" title="',
+          escape(theFile.name),
+          '"/>'
+        ].join("");
+        document.getElementById("list").insertBefore(span, null);
+      };
+    })(f);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  }
+}
+
+document
+  .getElementById("files")
+  .addEventListener("change", handleFileSelect, false);
