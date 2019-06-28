@@ -7,7 +7,6 @@ const cardImgs = document.querySelectorAll(".back");
 const startBtn = document.querySelector("#startbtn");
 const point = document.getElementById("point");
 const text = document.getElementById("text");
-let score = 0;
 
 //console.log(cardBack);
 startBtn.addEventListener("click", showCard);
@@ -74,8 +73,7 @@ function checkMatch() {
     text.innerText = "you can't click twice!";
   } else if (firstCard.dataset.name === secondCard.dataset.name) {
     disableCard();
-    score += 1;
-    point.innerText = score;
+
     text.innerText = "you win!";
     console.log("win");
   } else {
@@ -184,7 +182,6 @@ function moveLeft() {
     cards[index].classList.add("shadow");
     cards[0].classList.remove("shadow");
   }
-  //console.log(index);
 }
 
 function moveRight() {
@@ -197,43 +194,25 @@ function moveRight() {
     index = 0;
     cards[index].classList.add("shadow");
   }
-  console.log("right");
+  //console.log("right");
 }
 
 //upload
-function handleFileSelect(evt) {
-  var files = evt.target.files; // FileList object
+// 获取 input 元素
+var input = document.querySelector("input");
+// 获取 preview 元素
+var preview = document.querySelectorAll(".front");
+// 将 input 变成透明的
+input.style.opacity = 0;
+//console.log(preview[0].children);
+input.addEventListener("change", updateImageDisplay);
+function updateImageDisplay() {
+  var curFiles = input.files;
+  preview.forEach(x => {
+    console.log(x.firstElementChild);
+    const newImg = x.firstElementChild;
+    newImg.src = window.URL.createObjectURL(curFiles[0]);
+  });
 
-  // Loop through the FileList and render image files as thumbnails.
-  for (var i = 0, f; (f = files[i]); i++) {
-    // Only process image files.
-    if (!f.type.match("image.*")) {
-      continue;
-    }
-
-    var reader = new FileReader();
-
-    // Closure to capture the file information.
-    reader.onload = (function(theFile) {
-      return function(e) {
-        // Render thumbnail.
-        var span = document.createElement("span");
-        span.innerHTML = [
-          '<img class="thumb" src="',
-          e.target.result,
-          '" title="',
-          escape(theFile.name),
-          '"/>'
-        ].join("");
-        document.getElementById("list").insertBefore(span, null);
-      };
-    })(f);
-
-    // Read in the image file as a data URL.
-    reader.readAsDataURL(f);
-  }
+  console.log(curFiles[0].URL);
 }
-
-document
-  .getElementById("files")
-  .addEventListener("change", handleFileSelect, false);

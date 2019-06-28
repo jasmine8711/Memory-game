@@ -16,227 +16,246 @@
 
 <body>
     <div id="intro">
-        <button id="startbtn">cheat</button>
-        <div id='text'> result </div>
-        <div id="point">0</div>
-
-        <div id="upload">
-            <!--   <button id="uploadBtn">upload</button>
-            <input type="file"
-                id="uploadinput"
-                accept=".jpg, .jpeg, .png"
-                name="files[]"
-                multiple /> -->
-
-            <input type="file"
-                id="files"
-                name="files[]"
-                multiple />
-            <output id="list"></output>
+        <div id="rules">
+            Welcome to my food memory game.
+            You have to click two cards one by one, if they are the same dish,they will stay on the table, if they are
+            not the same dish ,they will be gone .And when you have all your food on the table, you win!!!
+            <br>
+            <br>
+            You can also use your arrow key on the keyboard to select the card, and press enter key to flip the card !
+            <br>
+            <br>
+            Also, if you are so sick of this game ,you can press "cheat" button to start the cheating version of the
+            game .In the cheating version, you have 2s to remember all the food .
+            <br>
+            <br>
+            You can also change the back of the card to your photo!
+            <br>
+            <br>
+            Have fun!!!!!
         </div>
+        <div id='text'> come on! </div>
+        <div id="btns">
+            <form id="upload">
+                <div>
+                    <button id="uploadBtn">Upload Image</button>
+
+                    <input type="file"
+                        id="image_uploads"
+                        name="image_uploads"
+                        accept=".jpg, .jpeg, .png">
+                </div>
+
+            </form>
+            <button id="startbtn">cheat</button>
+        </div>
+
+
+
     </div>
+    <div id="tableclothes">
+        <section id="container">
+            <div class="card"
+                data-name="green">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card1">
+                </div>
+                <div class="back">
+                    <img src="assets/green.png"
+                        alt="green"
+                        class="food">
+                </div>
+            </div>
+            <div class="card"
+                data-name="green">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/green.png"
+                        alt="green"
+                        class="food">
+                </div>
+            </div>
+            <div class="card"
+                data-name="spaghitte">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/spaghitte.png"
+                        alt="spaghitte"
+                        class="food">
+                </div>
+            </div>
+            <div class="card"
+                data-name="spaghitte">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card"></div>
+                <div class="back">
+                    <img src="assets/spaghitte.png"
+                        alt="spaghitte"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="salad">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card"></div>
+                <div class="back">
+                    <img src="assets/salad.png"
+                        alt="salad"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="salad">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card"></div>
+                <div class="back">
+                    <img src="assets/salad.png"
+                        alt="salad"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="pizza">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/pizza.png"
+                        alt="pizza"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="pizza">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/pizza.png"
+                        alt="pizza"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="hanbao">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/hanbao.png"
+                        alt="hanbao"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="hanbao">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/hanbao.png"
+                        alt="hanbao"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="beef">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/beef.png"
+                        alt="beef"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="beef">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/beef.png"
+                        alt="beef"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="noodle">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/noddle.png"
+                        alt="noodle"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="noodle">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/noddle.png"
+                        alt="noodle"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="rice">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card"></div>
+                <div class="back">
+                    <img src="assets/rice.png"
+                        alt="rice"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="rice">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card"></div>
+                <div class="back">
+                    <img src="assets/rice.png"
+                        alt="rice"
+                        class="food"></div>
+            </div>
+            <div class="card"
+                data-name="hotdog">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/hotdog.png"
+                        alt="hotdog"
+                        class="food">
+                </div>
+            </div>
+            <div class="card"
+                data-name="hotdog">
+                <div class="front">
+                    <img src="assets/card.png"
+                        alt="card">
+                </div>
+                <div class="back">
+                    <img src="assets/hotdog.png"
+                        alt="hotdog"
+                        class="food">
+                </div>
+            </div>
 
-    <section id="container">
-        <div class="card"
-            data-name="green">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card1">
-            </div>
-            <div class="back">
-                <img src="assets/green.png"
-                    alt="green"
-                    class="food">
-            </div>
-        </div>
-        <div class="card"
-            data-name="green">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/green.png"
-                    alt="green"
-                    class="food">
-            </div>
-        </div>
-        <div class="card"
-            data-name="spaghitte">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/spaghitte.png"
-                    alt="spaghitte"
-                    class="food">
-            </div>
-        </div>
-        <div class="card"
-            data-name="spaghitte">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card"></div>
-            <div class="back">
-                <img src="assets/spaghitte.png"
-                    alt="spaghitte"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="salad">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card"></div>
-            <div class="back">
-                <img src="assets/salad.png"
-                    alt="salad"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="salad">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card"></div>
-            <div class="back">
-                <img src="assets/salad.png"
-                    alt="salad"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="pizza">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/pizza.png"
-                    alt="pizza"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="pizza">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/pizza.png"
-                    alt="pizza"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="hanbao">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/hanbao.png"
-                    alt="hanbao"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="hanbao">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/hanbao.png"
-                    alt="hanbao"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="beef">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/beef.png"
-                    alt="beef"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="beef">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/beef.png"
-                    alt="beef"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="noodle">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/noddle.png"
-                    alt="noodle"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="noodle">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/noddle.png"
-                    alt="noodle"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="rice">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card"></div>
-            <div class="back">
-                <img src="assets/rice.png"
-                    alt="rice"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="rice">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card"></div>
-            <div class="back">
-                <img src="assets/rice.png"
-                    alt="rice"
-                    class="food"></div>
-        </div>
-        <div class="card"
-            data-name="hotdog">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/hotdog.png"
-                    alt="hotdog"
-                    class="food">
-            </div>
-        </div>
-        <div class="card"
-            data-name="hotdog">
-            <div class="front">
-                <img src="assets/card.png"
-                    alt="card">
-            </div>
-            <div class="back">
-                <img src="assets/hotdog.png"
-                    alt="hotdog"
-                    class="food">
-            </div>
-        </div>
-
-    </section>
+        </section>
+    </div>
 
 
     <script src="app.js"></script>
