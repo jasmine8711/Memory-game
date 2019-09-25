@@ -1,11 +1,10 @@
 Food Memory Game. [Demo](https://jasmine8711.github.io/Memory-game/).
 
-##The mission
-We want to recreate the game memory. It is a game where you have a bunch of cards. Each card contains an image. Of each image there are exactly two cards. The cards are placed in a random order. You get to turn them around. If you turned around two cards they either turn back so you can't see their image if they did not match. And if they did match they stay image face visible.
+I recreated the famous memory game. In the game you have a bunch of cards. Each card contains an image, there are exactly two cards of each image. The cards are placed in a random order. You get to turn them around. If you turned around two cards they either turn back so you can't see their image if they did not match or, if they did match, they stay visible.
 
 ## How do i do that .
 
-Now i know to slove a complicated problem, i should break them to baby step . so here is my step to creat this game.
+Now i know to slove a complicated problem, i should break them to baby step.
 
 1. Create HTML and basic css.
 1. Make flip animation in css.
@@ -15,7 +14,7 @@ Now i know to slove a complicated problem, i should break them to baby step . so
 1. Get the second target user clicked.
 1. Make sure user doesn't click on the same card twice .
 1. Only allow two cards to be clicked.
-1. compare two clicked element.
+1. Compare two clicked element.
 1. If the two cards are the same, make the point add 1.
 1. Show back of card initially and flip on click.
 1. Make the cheating button.
